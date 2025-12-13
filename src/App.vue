@@ -266,7 +266,7 @@ const resetForNextCustomer = () => {
 
   /* 右側表單區大致中心點（你再微調即可） */
   left: 72%;
-  top: 52%;
+  top: 56%;
   transform: translate(-50%, -50%);
 
   width: 320px;
