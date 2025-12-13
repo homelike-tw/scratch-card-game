@@ -213,7 +213,7 @@ const resetForNextCustomer = () => {
   position: absolute;
 
   /* 這兩個是「灰色窗框中心點」的比例座標 */
-  left: 35.5%;
+  left: 27%;
   top: 57.2%;
 
   transform: translate(-50%, -50%);
