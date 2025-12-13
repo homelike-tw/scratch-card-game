@@ -211,10 +211,16 @@ const resetForNextCustomer = () => {
 
 .scratch-area {
   position: absolute;
-  left: 24%;
-  top: 45%;
-  /* width: 280px;  ← 刪掉 */
-  /* height: 144px; ← 刪掉 */
+
+  /* 這兩個是「灰色窗框中心點」的比例座標 */
+  left: 35.5%;
+  top: 57.2%;
+
+  transform: translate(-50%, -50%);
+
+  /* 刮刮樂大小 */
+  width: 280px;
+  height: 180px;
 }
 
 
