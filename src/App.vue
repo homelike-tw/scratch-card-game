@@ -211,11 +211,12 @@ const resetForNextCustomer = () => {
 
 .scratch-area {
   position: absolute;
-  left: 410px;
-  top: 330px;
+  left: 27%;
+  top: 45%;
   width: 280px;
-  height: 180px;
+  height: 144px;
 }
+
 
 .prize {
   font-size: 22px;
