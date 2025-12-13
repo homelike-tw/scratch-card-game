@@ -211,11 +211,12 @@ const resetForNextCustomer = () => {
 
 .scratch-area {
   position: absolute;
-  left: 27%;
+  left: 25%;
   top: 45%;
-  width: 280px;
-  height: 180px; /* ← 改這裡，原本 144 */
+  /* width: 280px;  ← 刪掉 */
+  /* height: 144px; ← 刪掉 */
 }
+
 
 
 
