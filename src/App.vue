@@ -231,7 +231,7 @@ const resetForNextCustomer = () => {
   position: absolute;
 
   /* 這兩個是「灰色窗框中心點」的比例座標（你再微調即可） */
-  left: 27.5%;
+  left: 33.4%;
   top: 57.2%;
 
   /* 把元素中心點對齊 left/top */
