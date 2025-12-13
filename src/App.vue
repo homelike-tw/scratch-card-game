@@ -32,7 +32,7 @@ const prizeNumber = ref<number | null>(null)
 /** 隨機抽一個金額 */
 const generatePrizeNumber = () => {
   const index = Math.floor(Math.random() * PRIZES.length)
-  prizeNumber.value = PRIZES[index]
+  prizeNumber.value = PRIZES[index]!   // 👈 告訴 TS：我保證不會是 undefined
 }
 
 /** 三項必填/必勾 */

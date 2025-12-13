@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted, watch, nextTick, defineExpose } from 'vue'
+import { ref, onMounted, watch, nextTick } from 'vue'
+
 
 interface Props {
   width?: number
@@ -201,9 +202,16 @@ watch(
 </script>
 
 <template>
-  <div class="wrapper" :style="{ width: props.width + 'px', height: props.height + 'px' }">
-   >
+  <div
+    class="wrapper"
+    :style="{ width: props.width + 'px', height: props.height + 'px' }"
+  >
+    <!-- 底層內容（完全由外層傳入，沒有任何預設文字） -->
+    <div class="content">
+      <slot />
+    </div>
 
+    <!-- 上層刮刮樂遮罩 -->
     <canvas
       ref="canvasRef"
       class="mask"
@@ -216,6 +224,7 @@ watch(
     />
   </div>
 </template>
+
 
 <style scoped>
 .wrapper {
