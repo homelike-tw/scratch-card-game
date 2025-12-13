@@ -32,7 +32,7 @@ const prizeNumber = ref<number | null>(null)
 /** 隨機抽一個金額 */
 const generatePrizeNumber = () => {
   const index = Math.floor(Math.random() * PRIZES.length)
-  prizeNumber.value = PRIZES[index]!   // 👈 告訴 TS：我保證不會是 undefined
+  prizeNumber.value = PRIZES[index]! // 保證不會是 undefined
 }
 
 /** 三項必填/必勾 */
@@ -77,6 +77,10 @@ const getBlockReason = (): string => {
   return "目前不可刮。"
 }
 
+const handleScratchBlockedClick = () => {
+  alert(getBlockReason())
+}
+
 /** 送出表單 */
 const handleSubmit = () => {
   if (!form.value.store.trim() || !form.value.name.trim()) {
@@ -92,10 +96,6 @@ const handleSubmit = () => {
 
   // 送出時就先固定本次金額
   generatePrizeNumber()
-}
-
-const handleScratchBlockedClick = () => {
-  alert(getBlockReason())
 }
 
 /** 下一位顧客（只由 Modal 的 Play again 觸發） */
@@ -123,64 +123,66 @@ const resetForNextCustomer = () => {
 
 <template>
   <div class="page">
-    <img class="bg" src="/background.jpg" alt="event bg" />
+    <!-- 舞台：鎖定背景圖比例，所有定位都以 stage 為座標系 -->
+    <div class="stage">
+      <img class="bg" src="/background.jpg" alt="event bg" />
 
-    <div class="scratch-area">
-      <ScratchCard
-        :key="scratchKey"
-        :width="280"
-        :height="180"
-        :scratchRadius="24"
-        :revealPercent="55"
-        coverColor="#c0c0c0"
-        :disabled="!canScratch"
-        @revealed="handleRevealed"
-      >
-        <div class="prize">
-          <template v-if="isFormApproved && prizeNumber != null">
-            現折 {{ prizeNumber }} 元
-          </template>
-          <template v-else>
-            刮開揭曉
-          </template>
-        </div>
-      </ScratchCard>
+      <!-- 刮刮樂區 -->
+      <div class="scratch-area">
+        <ScratchCard
+          :key="scratchKey"
+          :width="280"
+          :height="180"
+          :scratchRadius="24"
+          :revealPercent="55"
+          coverColor="#c0c0c0"
+          :disabled="!canScratch"
+          @revealed="handleRevealed"
+        >
+          <div class="prize">
+            <template v-if="isFormApproved && prizeNumber != null">
+              現折 {{ prizeNumber }} 元
+            </template>
+            <template v-else>刮開揭曉</template>
+          </div>
+        </ScratchCard>
 
-      <div
-        v-if="!canScratch"
-        class="scratch-lock"
-        @click.stop.prevent="handleScratchBlockedClick"
-      />
+        <div
+          v-if="!canScratch"
+          class="scratch-lock"
+          @click.stop.prevent="handleScratchBlockedClick"
+        />
+      </div>
+
+      <!-- 表單區 -->
+      <form class="form-area" @submit.prevent="handleSubmit">
+        <input
+          v-model="form.store"
+          class="form-input"
+          type="text"
+          placeholder="門市據點（必填）"
+          :disabled="isFormApproved"
+        />
+        <input
+          v-model="form.name"
+          class="form-input"
+          type="text"
+          placeholder="顧客姓名（必填）"
+          :disabled="isFormApproved"
+        />
+
+        <label class="checkbox-line">
+          <input v-model="form.agree" type="checkbox" :disabled="isFormApproved" />
+          <span>我已在實體店面消費滿 10,000 元（必勾）</span>
+        </label>
+
+        <button class="image-btn" type="submit" :disabled="isFormApproved || !isFormValid">
+          <img src="/button.png" alt="輕輕一刮，刮出你的新年好運" />
+        </button>
+      </form>
     </div>
 
-    <form class="form-area" @submit.prevent="handleSubmit">
-      <input
-        v-model="form.store"
-        class="form-input"
-        type="text"
-        placeholder="門市據點（必填）"
-        :disabled="isFormApproved"
-      />
-      <input
-        v-model="form.name"
-        class="form-input"
-        type="text"
-        placeholder="顧客姓名（必填）"
-        :disabled="isFormApproved"
-      />
-
-      <label class="checkbox-line">
-        <input v-model="form.agree" type="checkbox" :disabled="isFormApproved" />
-        <span>我已在實體店面消費滿 10,000 元（必勾）</span>
-      </label>
-
-      <button class="image-btn" type="submit" :disabled="isFormApproved || !isFormValid">
-        <img src="/button.png" alt="輕輕一刮，刮出你的新年好運" />
-      </button>
-
-      <!-- 已移除 RESTART 按鈕（只保留 Modal 的 Play again） -->
-    </form>
-
+    <!-- Modal -->
     <ResultModal
       :open="modalOpen"
       :store="modalStore"
@@ -192,39 +194,53 @@ const resetForNextCustomer = () => {
 </template>
 
 <style scoped>
+/* 讓整個舞台置中，且不因瀏覽器差異跑版 */
 .page {
-  position: relative;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  font-family: "Noto Sans TC", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
+  display: grid;
+  place-items: center;
+  font-family: "Noto Sans TC", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+/**
+ * 舞台：固定比例（請依 background.jpg 真實比例調整）
+ * 目前先用 16:9
+ */
+.stage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: min(100vw, calc(100vh * (16 / 9)));
+  height: auto;
+}
+
+/* 背景圖滿版舞台（避免 contain 留白造成定位錯位） */
 .bg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
+/* =========================
+   刮刮樂定位（以 stage 為座標系）
+   ========================= */
 .scratch-area {
   position: absolute;
 
-  /* 這兩個是「灰色窗框中心點」的比例座標 */
-  left: 27%;
+  /* 這兩個是「灰色窗框中心點」的比例座標（你再微調即可） */
+  left: 33.5%;
   top: 57.2%;
 
+  /* 把元素中心點對齊 left/top */
   transform: translate(-50%, -50%);
 
   /* 刮刮樂大小 */
   width: 280px;
   height: 180px;
 }
-
-
-
 
 .prize {
   font-size: 22px;
@@ -234,6 +250,7 @@ const resetForNextCustomer = () => {
   padding-top: 50px;
 }
 
+/* 阻擋層：覆蓋整個刮刮樂 */
 .scratch-lock {
   position: absolute;
   inset: 0;
@@ -241,10 +258,17 @@ const resetForNextCustomer = () => {
   cursor: not-allowed;
 }
 
+/* =========================
+   表單定位（以 stage 為座標系）
+   ========================= */
 .form-area {
   position: absolute;
-  right: 380px;
-  top: 360px;
+
+  /* 右側表單區大致中心點（你再微調即可） */
+  left: 72%;
+  top: 56%;
+  transform: translate(-50%, -50%);
+
   width: 320px;
   display: flex;
   flex-direction: column;
@@ -275,6 +299,7 @@ const resetForNextCustomer = () => {
 
 .image-btn img {
   width: 100%;
+  display: block;
 }
 
 .image-btn:disabled {
