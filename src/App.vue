@@ -67,7 +67,7 @@ const getBlockReason = (): string => {
     if (!form.value.agree) {
       return "請先勾選「已在實體店面消費滿 10,000 元」。"
     }
-    return "請先按下「送出」完成驗證，才可以開始刮。"
+    return "請先按下「輕輕一刮按鈕」完成驗證，才可以開始刮。"
   }
 
   if (isRevealed.value) {
@@ -156,13 +156,23 @@ const resetForNextCustomer = () => {
 
       <!-- 表單區 -->
       <form class="form-area" @submit.prevent="handleSubmit">
-        <input
+      <select
           v-model="form.store"
           class="form-input"
-          type="text"
-          placeholder="門市據點（必填）"
           :disabled="isFormApproved"
-        />
+        >
+          <option value="" disabled>請選擇門市據點（必填）</option>
+
+          <option value="台北士林特力門市展示">台北士林特力門市展示</option>
+          <option value="新北中和特力門市展示">新北中和特力門市展示</option>
+          <option value="桃園門市展示">桃園門市展示</option>
+          <option value="台中南屯門市展示">台中南屯門市展示</option>
+          <option value="台南仁德門市展示">台南仁德門市展示</option>
+          <option value="高雄左營特力門市展示">高雄左營特力門市展示</option>
+          <option value="高雄鳳山特力門市展示">高雄鳳山特力門市展示</option>
+          <option value="屏東特力門市展示">屏東特力門市展示</option>
+        </select>
+
         <input
           v-model="form.name"
           class="form-input"
@@ -265,7 +275,7 @@ const resetForNextCustomer = () => {
   position: absolute;
 
   /* 右側表單區大致中心點（你再微調即可） */
-  left: 72%;
+  left: 66%;
   top: 56%;
   transform: translate(-50%, -50%);
 
@@ -281,6 +291,9 @@ const resetForNextCustomer = () => {
   border: none;
   font-size: 16px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+ appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .checkbox-line {

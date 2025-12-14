@@ -21,7 +21,16 @@ const amountText = computed(() => String(props.amount))
       <div class="card">
         <div class="brand">
           <div class="brand-line-1">Homelike 喜家居</div>
-          <div class="brand-line-2">恭喜！幸運就在你手上</div>
+          <div class="meta">
+          <div class="meta-row">
+            <span class="meta-k">門市</span>
+            <span class="meta-v">{{ store }}</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-k">姓名</span>
+            <span class="meta-v">{{ name }}</span>
+          </div>
+        </div>
         </div>
 
         <div class="ticket">
@@ -33,17 +42,8 @@ const amountText = computed(() => String(props.amount))
           </div>
         </div>
 
-        <div class="meta">
-          <div class="meta-row">
-            <span class="meta-k">門市</span>
-            <span class="meta-v">{{ store }}</span>
-          </div>
-          <div class="meta-row">
-            <span class="meta-k">姓名</span>
-            <span class="meta-v">{{ name }}</span>
-          </div>
-        </div>
-
+        
+        <div class="brand-line-2">恭喜！幸運就在你手上</div>
         <div class="actions">
           <button class="btn primary" type="button" @click="emit('restart')">
             Play again
@@ -91,6 +91,7 @@ const amountText = computed(() => String(props.amount))
   color: #ffffff;
   font-weight: 900;
   font-size: 40px;
+  text-align: center;
   letter-spacing: 2px;
 }
 
@@ -119,7 +120,8 @@ const amountText = computed(() => String(props.amount))
 }
 
 .num {
-  font-size: 160px;
+  font-size: 220px;
+   line-height: 0.9;
   font-weight: 1000;
   letter-spacing: 2px;
   background: linear-gradient(180deg, #ff2b2b, #8b0a0a);
