@@ -163,14 +163,14 @@ const resetForNextCustomer = () => {
         >
           <option value="" disabled>請選擇門市據點（必填）</option>
 
-          <option value="台北士林特力門市展示">台北士林特力門市展示</option>
-          <option value="新北中和特力門市展示">新北中和特力門市展示</option>
-          <option value="桃園門市展示">桃園門市展示</option>
-          <option value="台中南屯門市展示">台中南屯門市展示</option>
-          <option value="台南仁德門市展示">台南仁德門市展示</option>
-          <option value="高雄左營特力門市展示">高雄左營特力門市展示</option>
-          <option value="高雄鳳山特力門市展示">高雄鳳山特力門市展示</option>
-          <option value="屏東特力門市展示">屏東特力門市展示</option>
+          <option value="台北士林特力門市展示">台北士林特力門市</option>
+          <option value="新北中和特力門市展示">新北中和特力門市</option>
+          <option value="桃園門市展示">桃園門市</option>
+          <option value="台中南屯門市展示">台中南屯門市</option>
+          <option value="台南仁德門市展示">台南仁德門市</option>
+          <option value="高雄左營特力門市展示">高雄左營特力門市</option>
+          <option value="高雄鳳山特力門市展示">高雄鳳山特力門市</option>
+          <option value="屏東特力門市展示">屏東特力門市</option>
         </select>
 
         <input
