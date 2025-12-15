@@ -22,12 +22,12 @@ const amountText = computed(() => String(props.amount))
         <div class="brand">
           <div class="brand-line-1">Homelike 喜家居</div>
           <div class="meta">
-          <div class="meta-row">
-            <span class="meta-k">門市</span>
+          <div>
+            <span class="meta-k"></span>
             <span class="meta-v">{{ store }}</span>
           </div>
-          <div class="meta-row">
-            <span class="meta-k">姓名</span>
+          <div>
+            <span class="meta-k"></span>
             <span class="meta-v">{{ name }}</span>
           </div>
         </div>
@@ -81,19 +81,20 @@ const amountText = computed(() => String(props.amount))
 
 .brand-line-1 {
   color: #f1c06a;
-  font-weight: 800;
-  font-size: 46px;
+  font-weight: 600;
+  font-size: 60px;
   letter-spacing: 1px;
 }
 
 .brand-line-2 {
   margin-top: 10px;
   color: #ffffff;
-  font-weight: 900;
-  font-size: 40px;
+  font-weight: 400; /* normal */
+  font-size: 35px;
   text-align: center;
   letter-spacing: 2px;
 }
+
 
 .ticket {
   margin: 18px auto 0;
@@ -137,23 +138,15 @@ const amountText = computed(() => String(props.amount))
 }
 
 .meta {
-  margin-top: 26px;              /* 拉開跟金額的距離 */
+  margin-top: 8px;              /* 拉開跟金額的距離 */
   display: flex;
   justify-content: center;
-  gap: 32px;
+  gap: 16px;
   flex-wrap: wrap;
   color: #fff;
   font-size: 24px;               /* 整組放大（關鍵） */
 }
 
-.meta-row {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  background: rgba(0,0,0,.25);
-  padding: 16px 22px;            /* 內距變大 */
-  border-radius: 999px;
-}
 
 .meta-k {
   opacity: .9;
@@ -162,8 +155,8 @@ const amountText = computed(() => String(props.amount))
 }
 
 .meta-v {
-  font-weight: 900;
-  font-size: 36px;               /* 值再更大一點 */
+  font-weight: 400;
+  font-size: 45px;               /* 值再更大一點 */
 }
 
 
@@ -176,11 +169,12 @@ const amountText = computed(() => String(props.amount))
 .btn {
   border: none;
   border-radius: 999px;
-  padding: 12px 22px;
+  padding: 16px 32px;   /* 原本約 12 22 → 放大 */
   font-weight: 900;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 18px;      /* 原本 14 → 18 */
 }
+
 
 .btn.primary {
   background: #ffd27a;

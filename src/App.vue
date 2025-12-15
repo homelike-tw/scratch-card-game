@@ -163,14 +163,14 @@ const resetForNextCustomer = () => {
         >
           <option value="" disabled>請選擇門市據點（必填）</option>
 
-          <option value="台北士林特力門市展示">台北士林特力門市</option>
-          <option value="新北中和特力門市展示">新北中和特力門市</option>
-          <option value="桃園門市展示">桃園門市</option>
-          <option value="台中南屯門市展示">台中南屯門市</option>
-          <option value="台南仁德門市展示">台南仁德門市</option>
-          <option value="高雄左營特力門市展示">高雄左營特力門市</option>
-          <option value="高雄鳳山特力門市展示">高雄鳳山特力門市</option>
-          <option value="屏東特力門市展示">屏東特力門市</option>
+          <option value="桃園店">桃園店</option>
+          <option value="台中南屯店">台中南屯店</option>
+          <option value="台南仁德店">台南仁德店</option>
+          <option value="高雄左營店">高雄左營店</option>
+          <option value="台北士林特力店">台北士林特力店</option>
+          <option value="新北中和特力店">新北中和特力店</option>
+          <option value="高雄鳳山特力店">高雄鳳山特力店</option>
+          <option value="屏東特力店">屏東特力店</option>
         </select>
 
         <input
@@ -276,7 +276,7 @@ const resetForNextCustomer = () => {
 
   /* 右側表單區大致中心點（你再微調即可） */
   left: 66%;
-  top: 56%;
+  top: 60%;
   transform: translate(-50%, -50%);
 
   width: 320px;
