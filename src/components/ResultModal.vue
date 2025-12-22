@@ -125,7 +125,7 @@ const amountText = computed(() => String(props.amount))
    line-height: 0.9;
   font-weight: 1000;
   letter-spacing: 2px;
-  background: linear-gradient(180deg, #ff2b2b, #8b0a0a);
+  background: linear-gradient(180deg, #E72428, #E72428);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
