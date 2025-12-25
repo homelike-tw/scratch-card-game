@@ -183,7 +183,7 @@ const resetForNextCustomer = () => {
 
         <label class="checkbox-line">
           <input v-model="form.agree" type="checkbox" :disabled="isFormApproved" />
-          <span>我已在實體店面消費滿 10,000 元（必勾）</span>
+          <span>我已在實體店面消費滿 10,000 元 且已完成評論</span>
         </label>
 
         <button class="image-btn" type="submit" :disabled="isFormApproved || !isFormValid">
